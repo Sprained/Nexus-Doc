@@ -1,3 +1,4 @@
 .env
 .htaccess
 error_log
+vendor
