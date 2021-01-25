@@ -8,12 +8,12 @@ class Validator
         echo $erro;
         die();
     }
-    
-    public function count($min, $max, $campo, $char) 
+
+    public function count($min, $max, $campo, $char)
     {
-        if($min && strlen(trim($char)) < $min) {
+        if ($min && strlen(trim($char)) < $min) {
             $this->error("O campo $campo deve conter, no mínimo, $min caracteres!");
-        } else if($max && strlen(trim($char)) > $max) {
+        } else if ($max && strlen(trim($char)) > $max) {
             $this->error("O campo $campo deve conter, no máximo, $max caracteres!");
         }
 
@@ -27,10 +27,19 @@ class Validator
 
     public function email($email)
     {
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->error('Email informado invalido!');
         }
 
         return $email;
+    }
+
+    public function num($char, $campo)
+    {
+        if (!is_numeric($char)) {
+            $this->error("O campo $campo deve conter apenas números!");
+        }
+
+        return trim($char);
     }
 }
