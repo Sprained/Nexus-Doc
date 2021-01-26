@@ -29,7 +29,7 @@ include_once __DIR__ . '/classes/infos_planos.php';
         <input type="text" name='uf' placeholder="UF">
         <input type="text" name='complemento' placeholder="Complemento">
         <input type="text" name='municipio' placeholder="Bairro">
-        <button type="submit">Cadastrar</button>
+        <button type="submit" id="submitButtom">Cadastrar</button>
 
         <?php foreach($infos as $value){ ?>
             <div>

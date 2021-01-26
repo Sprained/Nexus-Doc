@@ -9,29 +9,45 @@ class Validator
         die();
     }
 
-    public function count($min, $max, $campo, $char)
+    public function required($char, $campo)
     {
-        if ($min && strlen(trim($char)) < $min) {
-            $this->error("O campo $campo deve conter, no mínimo, $min caracteres!");
-        } else if ($max && strlen(trim($char)) > $max) {
-            $this->error("O campo $campo deve conter, no máximo, $max caracteres!");
+        if(!trim($char)){
+            $this->error("O campo $campo é obrigatório!");
         }
 
         return trim($char);
     }
 
+    public function count($min, $max, $campo, $char)
+    {
+        if($this->required($char, $campo)){
+            if ($min && strlen(trim($char)) < $min) {
+                $this->error("O campo $campo deve conter, no mínimo, $min caracteres!");
+            } else if ($max && strlen(trim($char)) > $max) {
+                $this->error("O campo $campo deve conter, no máximo, $max caracteres!");
+            }
+
+            return trim($char);
+        }
+    }
+
     public function password($pass)
     {
-        return md5($this->count(6, null,  "Senha", $pass));
+        if($this->required($pass, 'Senha')) {
+            return md5($this->count(6, null,  "Senha", $pass));
+        }
     }
 
     public function email($email)
     {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $this->error('Email informado invalido!');
+        if($this->required($email, 'Email')){
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $this->error('Email informado invalido!');
+            }
+    
+            return $email;
         }
-
-        return $email;
+        
     }
 
     public function num($char, $campo)

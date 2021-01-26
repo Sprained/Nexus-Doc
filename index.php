@@ -1,14 +1,19 @@
 <?php
 include_once __DIR__ . '/vendor/autoload.php';
-include __DIR__ . '/classes/db.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+use Dompdf\Dompdf;
 
-$teste = $_ENV['DB_DATABASE'];
+session_start();
 
-$db = new db($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_DATABASE'], $_ENV['DB_CHARSET']);
+$_SESSION['titulo'] = 'teste';
 
-// $teste = $db->query("SELECT * FROM cidades LIMIT 1")->fetchAll();
+$ch = curl_init("http://localhost/dev/Nexus%20Doc/docs/abnt.php");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$content = curl_exec($ch);
+curl_close($ch);
 
-// print_r($teste);
+$dompdf = new Dompdf();
+$dompdf->loadHtml($content);
+
+$dompdf->render();
+$dompdf->stream();
