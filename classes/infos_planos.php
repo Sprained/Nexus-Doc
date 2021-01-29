@@ -1,6 +1,5 @@
 <?php 
 include __DIR__ . '/db.php';
-// include __DIR__ . '/conn.php';
 
 $sql = "SELECT
             p.id AS id_plano,

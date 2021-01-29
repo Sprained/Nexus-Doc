@@ -52,10 +52,12 @@ class Validator
 
     public function num($char, $campo)
     {
-        if (!is_numeric($char)) {
-            $this->error("O campo $campo deve conter apenas números!");
+        if($this->required($char, $campo)){
+            if (!is_numeric($char)) {
+                $this->error("O campo $campo deve conter apenas números!");
+            }
         }
-
+        
         return trim($char);
     }
 }

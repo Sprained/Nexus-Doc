@@ -1,7 +1,3 @@
-<?php
-include __DIR__ . '/teste.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +6,12 @@ include __DIR__ . '/teste.php';
     <title>Document</title>
 </head>
 <body>
-    <h1><?=$_SESSION['titulo']?></h1>
+    <h1><?=$_POST['nome_instituicao']?></h1>
+    <h1><?=$_POST['nome_curso']?></h1>
+    <h1><?=$_POST['nome_autores']?></h1>
+    <h1><?=$_POST['titulo']?></h1>
+    <h1><?=$_POST['subtitulo']?></h1>
+    <h1><?=$_POST['cidade']?></h1>
+    <h1><?=$_POST['ano']?></h1>
 </body>
 </html>
