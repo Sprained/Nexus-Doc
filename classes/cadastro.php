@@ -4,7 +4,7 @@ require __DIR__ . '/validator.php';
 
 $validator = new Validator();
 
-$nome = trim($_POST['nome']);
+$nome = $validator->required($_POST['nome'], 'Nome');
 $senha = $validator->password(($_POST['senha']));
 $telefone = $validator->count(10, 11, 'Telefone', $_POST['telefone']);
 $cpf = $validator->count(11, 11, 'CPF', $_POST['cpf']);

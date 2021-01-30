@@ -53,7 +53,7 @@ $('form').on('submit', function (e) {
                 "positionClass": "toast-top-center"
             };
 
-            toastr["warning"](res);
+            toastr["warning"](res.responseText);
         }
     });
 });
